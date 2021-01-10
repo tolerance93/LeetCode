@@ -10,6 +10,7 @@
   *
   * algorithm
   * - heightAfterRain[i] = min(max(Height, 0...i), max(Height, (i + 1)..<n))
+  * - where max(Height, interval) denotes max input height value in interval.
 */
 
 #include "vector"
