@@ -1,6 +1,25 @@
 /*
  * Runtime: 160 ms, faster than 95.39% of C++ online submissions for Find Median from Data Stream.
  * Memory Usage: 47.4 MB, less than 38.08% of C++ online submissions for Find Median from Data Stream.
+ *
+ *
+ * [Time Complexity]
+ * - addNum(): O(logn), n: number of elements in DataStream.
+ * At worst case, 2 push operations and 1 pop operation.
+ * total 3logn + c where c is for other constant-time operation.
+ * - findMedian(): O(1)
+ *
+ * [Space Complexity]
+ * - O(n): leftPQ and rightPQ have total (n - 1) elements except median.
+ *
+ * [Algorithm]
+ * leftPQ is max heap with elements less than or equal to median.
+ * rightPQ is min heap with elements greater than median.
+ * -addNum()
+ * compare input num to median and add corresponding PQ.
+ * update median under condition of parity.
+ * - findMedian()
+ * read or calculate return value under condition of parity.
  */
 
 #include <iostream>
