@@ -1,6 +1,12 @@
 /**
  * Runtime: 288 ms, faster than 11.79% of C++ online submissions for Cherry Pickup.
  * Memory Usage: 38.6 MB, less than 18.08% of C++ online submissions for Cherry Pickup.
+ *
+ * [Time Complexity]
+ * O(n^4): need to figure out all element of dp[n][n][n][n]
+ *
+ * [Space Complexity]
+ * O(n^4) need to figure out all element of dp[n][n][n][n]
  */
 
 #include <vector>
