@@ -1,6 +1,8 @@
 /**
- * Runtime: 52 ms, faster than 95.06% of C++ online submissions for Coin Change.
- * Memory Usage: 9.7 MB, less than 99.32% of C++ online submissions for Coin Change.
+ * Runtime: 64 ms, faster than 74.73% of C++ online submissions for Coin Change.
+ * Memory Usage: 9.9 MB, less than 95.68% of C++ online submissions for Coin Change.
+ *
+ * res[]에 저장된 모든 값을 볼 필요없이, 코인의 값을 이용하여, 가능한 위치만 조사할 수 있다.
  */
 
 #include <iostream>
