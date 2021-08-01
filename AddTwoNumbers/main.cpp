@@ -1,10 +1,7 @@
-//
-//  main.cpp
-//  AddTwoNumbers
-//
-//  Created by Tolerance on 2020/12/25.
-//
-
+/**
+ * Runtime: 44 ms, faster than 21.36% of C++ online submissions for Add Two Numbers.
+ * Memory Usage: 71.5 MB, less than 46.40% of C++ online submissions for Add Two Numbers.
+ */
 
   struct ListNode {
       int val;
@@ -17,6 +14,69 @@
  
 class Solution {
 public:
+    
+    ListNode* addTwoNumbers2(ListNode* l1, ListNode* l2) {
+        if (l1 == nullptr) return l2;
+        if (l2 == nullptr) return l1;
+        
+        int carry = 0;
+        
+        ListNode* head = nullptr;
+        while (l1 != nullptr && l2 != nullptr)
+        {
+            int sum = l1->val + l2->val + carry;
+            ListNode *n = new ListNode(sum % 10);
+            n->next = head;
+            head = n;
+            carry = sum / 10;
+            
+            l1 = l1->next;
+            l2 = l2->next;
+        }
+        
+        while (l1 != nullptr)
+        {
+            int sum = l1->val + carry;
+            ListNode *n = new ListNode(sum % 10);
+            n->next = head;
+            head = n;
+            carry = sum / 10;
+            l1 = l1->next;
+        }
+        
+        while (l2 != nullptr)
+        {
+            int sum = l2->val + carry;
+            ListNode *n = new ListNode(sum % 10);
+            n->next = head;
+            head = n;
+            carry = sum / 10;
+            l2 = l2->next;
+        }
+        
+        if (carry)
+        {
+            ListNode *n = new ListNode(carry);
+            n->next = head;
+            head = n;
+        }
+        
+        //Reverse
+        ListNode* prev = nullptr;
+        ListNode* curr = head;
+        
+        while (curr)
+        {
+            ListNode* n = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = n;
+        }
+        head = prev;
+        return head;
+        
+    }
+    
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
         ListNode* cur = new ListNode(0, 0);
         ListNode* res = cur;
