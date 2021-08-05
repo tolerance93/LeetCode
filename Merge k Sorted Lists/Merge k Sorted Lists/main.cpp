@@ -26,8 +26,10 @@ public:
             return a->val > b->val;
         }
     };
-    
+
+
     ListNode* mergeKLists(vector<ListNode*>& lists) {
+        
         priority_queue<ListNode*, vector<ListNode*>, mycmp> pq;
         for (int i = 0; i < lists.size(); i++)
         {
