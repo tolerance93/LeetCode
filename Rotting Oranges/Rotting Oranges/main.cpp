@@ -32,6 +32,7 @@ public:
                 if (grid[i][j] == 2)
                 {
                     q.push({j, i, 0});
+                    // queue에 넣을때 visited check!
                     visited[i][j] = true;
                 }
             }
@@ -40,8 +41,10 @@ public:
         int time = 0;
         while (!q.empty())
         {
+            // front()와 pop()은 짝으로 다님
             cell t = q.front();
             q.pop();
+            
             time = max(time, t.time);
             for (int i = 0; i < 4; i++)
             {
