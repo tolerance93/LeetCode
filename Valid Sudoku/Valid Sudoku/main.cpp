@@ -5,6 +5,8 @@
 
 #include <vector>
 #include <utility>
+#include <unordered_set>
+#include <string>
 
 using namespace std;
 
@@ -92,6 +94,30 @@ public:
         checkSquare(board, squareStart, res);
         return res;
     }
+    
+    bool isValidSudoku2(vector<vector<char>>& board) {
+        unordered_set<string> set;
+        for (int i = 0; i < 9; i++)
+        {
+            for (int j = 0; j < 9; j++)
+            {
+                if (board[i][j] == '.') continue;
+                string row = to_string(i) + "(" + string(1, board[i][j]) + ")";
+                string cur = "(" + string(1, board[i][j]) + ")" + to_string(j);
+                string square = to_string(i / 3) + "(" + string(1, board[i][j]) + ")" + to_string(j / 3);
+                if (set.find(row) != set.end() ||
+                    set.find(cur) != set.end() ||
+                    set.find(square) != set.end())
+                {
+                    return false;
+                }
+                set.insert(row);
+                set.insert(cur);
+                set.insert(square);
+            }
+        }
+        return true;
+    }
 };
 
 int main()
@@ -108,6 +134,6 @@ int main()
         {'.','.','.','.','8','.','.','7','9'}
     };
     Solution sol;
-    sol.isValidSudoku(input);
+    sol.isValidSudoku2(input);
     return 0;
 }
