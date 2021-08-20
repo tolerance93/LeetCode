@@ -21,9 +21,7 @@ public:
     
     string decodeString(string s) {
         string ans = "";
-        
         stack<int> nums;
-        stack<string> strs;
         
         for (int i = 0; i < s.size(); i++)
         {
