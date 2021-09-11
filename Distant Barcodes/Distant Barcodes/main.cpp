@@ -8,7 +8,45 @@
 
 using namespace std;
 
+// O(n)
 class Solution {
+public:
+    vector<int> rearrangeBarcodes(vector<int>& barcodes) {
+        vector<int> count(10001, 0);
+        int maxValue = 0;
+        int maxPos = -1;
+        
+        for (auto num : barcodes)
+        {
+            count[num]++;
+            if (count[num] > maxValue)
+            {
+                maxValue = count[num];
+                maxPos = num;
+            }
+        }
+        
+        int pos = 0;
+        for (int i = 0; i < count.size(); i++)
+        {
+            int cur = i == 0 ? maxPos : i;
+            if (count[cur] > 0)
+            {
+                while (count[cur])
+                {
+                    barcodes[pos] = cur;
+                    count[cur]--;
+                    pos += 2;
+                    if (pos >= barcodes.size()) pos = 1;
+                }
+            }
+        }
+        return barcodes;
+    }
+};
+
+// O(nlogn)
+class Solution2 {
 public:
     
     struct cmp {
