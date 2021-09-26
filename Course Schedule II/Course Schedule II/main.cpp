@@ -33,13 +33,11 @@ public:
             }
         }
         
-        int finished = 0;
         while (q.size() > 0)
         {
             int node = q.front();
             ans.push_back(node);
             q.pop();
-            finished++;
             
             vector<int> children = graph[node];
             for (int i = 0; i < children.size(); i++)
@@ -51,7 +49,7 @@ public:
                 }
             }
         }
-        if (finished == numCourses) return ans;
+        if (ans.size() == numCourses) return ans;
         return vector<int>();
     }
 };
