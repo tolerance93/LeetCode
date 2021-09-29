@@ -12,13 +12,13 @@ public:
     
     static bool compare(vector<int>& a, vector<int>& b)
     {
-        if (a[0] != b[0])
+        if (a[1] != b[1])
         {
-            return a[0] < b[0];
+            return a[1] < b[1];
         }
         else
         {
-            return a[1] < b[1];
+            return a[0] < b[0];
         }
     }
     
@@ -31,9 +31,7 @@ public:
             if (points[i][0] > checker) {
                 count++;
                 checker = points[i][1];
-                continue;
             }
-            checker = min(checker, points[i][1]);
         }
         return count + 1;
     }
