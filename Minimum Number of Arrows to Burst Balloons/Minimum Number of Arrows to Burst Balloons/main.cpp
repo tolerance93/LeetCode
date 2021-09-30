@@ -1,6 +1,9 @@
 /**
  * Runtime: 420 ms, faster than 46.45% of C++ online submissions for Minimum Number of Arrows to Burst Balloons.
  * Memory Usage: 89.8 MB, less than 22.45% of C++ online submissions for Minimum Number of Arrows to Burst Balloons.
+ *
+ * Time Complexity: O(nlogn)
+ * Space Complexity: O(n) if consider input size
  */
 
 #include <vector>
