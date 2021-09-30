@@ -1,9 +1,13 @@
 /**
- * Runtime: 40 ms, faster than 28.61% of C++ online submissions for Construct Binary Tree from Preorder and Inorder Traversal.
- * Memory Usage: 26 MB, less than 76.89% of C++ online submissions for Construct Binary Tree from Preorder and Inorder Traversal.
+ * Runtime: 16 ms, faster than 80.89% of C++ online submissions for Construct Binary Tree from Preorder and Inorder Traversal.
+ * Memory Usage: 26.5 MB, less than 28.69% of C++ online submissions for Construct Binary Tree from Preorder and Inorder Traversal.
+ *
+ * Time Complexity: O(n)
+ * Space Complexity: O(n)
  */
 
 #include <vector>
+#include <unordered_map>
 
 using namespace std;
 
@@ -19,25 +23,27 @@ struct TreeNode {
 
 class Solution {
 public:
-    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder, int preStart, int preEnd, int inStart, int inEnd)
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder, int preStart, int preEnd, int inStart, int inEnd, unordered_map<int, int>& inorderMap)
     {
         if (preStart >= preEnd || inStart >= inEnd) return nullptr;
         TreeNode* node = new TreeNode(preorder[preStart]);
-        int index = - 1;
-        for (int i = inStart; i < inorder.size(); i++)
-        {
-            index++;
-            if (inorder[i] == preorder[preStart]) break;
-        }
-        node->left = buildTree(preorder, inorder, preStart + 1, preStart + index + 1, inStart, inStart + index);
-        node->right = buildTree(preorder, inorder, preStart + index + 1, preEnd, inStart + index + 1, inEnd);
+        int rootIdxAtInorder = inorderMap[preorder[preStart]];
+        int leftSubTreeCount = rootIdxAtInorder - inStart;
+        
+        node->left = buildTree(preorder, inorder, preStart + 1, preStart + leftSubTreeCount + 1, inStart, inStart + leftSubTreeCount, inorderMap);
+        node->right = buildTree(preorder, inorder, preStart + leftSubTreeCount + 1, preEnd, inStart + leftSubTreeCount + 1, inEnd, inorderMap);
         return node;
     }
     
     
     TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
         if (preorder.size() == 0) return nullptr;
-        TreeNode* root = buildTree(preorder, inorder, 0, preorder.size(), 0, inorder.size());
+        unordered_map<int, int> inorderMap;
+        for (int i = 0; i < inorder.size(); i++)
+        {
+            inorderMap[inorder[i]] = i;
+        }
+        TreeNode* root = buildTree(preorder, inorder, 0, preorder.size(), 0, inorder.size(), inorderMap);
         return root;
     }
 };
