@@ -1,6 +1,9 @@
 /**
  * Runtime: 8 ms, faster than 34.09% of C++ online submissions for Wiggle Subsequence.
  * Memory Usage: 7.3 MB, less than 32.63% of C++ online submissions for Wiggle Subsequence.
+ *
+ * Time Complexity: O(n^2)
+ * Space Complexity: O(n)
  */
 
 #include <vector>
