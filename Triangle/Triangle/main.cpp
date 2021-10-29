@@ -1,6 +1,6 @@
 /**
  * Runtime: 4 ms, faster than 92.93% of C++ online submissions for Triangle.
- * Memory Usage: 9 MB, less than 21.27% of C++ online submissions for Triangle.
+ * Memory Usage: 8.7 MB, less than 33.27% of C++ online submissions for Triangle.
  *
  * Time Complexity: O(n)
  * Space Complexity: O(n). actually, num of elements in last row of triangle * 2
@@ -15,7 +15,7 @@ public:
     
     void swap(vector<int>& a, vector<int>& b)
     {
-        vector<int> temp = a;
+        vector<int>& temp = a;
         a = b;
         b = temp;
     }
@@ -49,8 +49,7 @@ public:
                 }
                 else
                 {
-                    int curMinSum = min(up[j - 1], up[j]) + triangle[i][j];
-                    down[j] = curMinSum;
+                    down[j] = min(up[j - 1], up[j]) + triangle[i][j];
                 }
             }
         }
