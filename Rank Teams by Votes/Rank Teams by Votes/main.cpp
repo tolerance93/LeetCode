@@ -38,11 +38,9 @@ public:
         }
     };
     
-    string rankTeams(vector<string>& votes) {
-        
+    string rankTeams2(vector<string>& votes) {
         int n = 26;
-        int m = votes[0].size();
-        
+        int m = (int) votes[0].size();
         // init
         int count[n][m];
         for (int i = 0; i < n; i++)
@@ -52,7 +50,6 @@ public:
                 count[i][j] = 0;
             }
         }
-        
         // count
         for (auto& str : votes)
         {
@@ -62,7 +59,6 @@ public:
                 count[ch][i]++;
             }
         }
-        
         //sort
         vector<Team> teams;
         string& sample = votes[0];
@@ -73,15 +69,34 @@ public:
             team = sample[i] - 'A';
             teams.push_back({team, count[team]});
         }
-        
         sort(teams.begin(), teams.end(), greater<Team>());
         string res;
         for (auto& c : teams)
         {
             res.push_back((char) c.team + 'A');
         }
-        
         return res;
+    }
+    
+    string rankTeams(vector<string>& votes) {
+      int m = (int) votes[0].size();
+      vector<vector<int>> v(m, vector<int>(26, 0));
+
+      for (auto& vote : votes) {
+        for (int i = 0; i < m; ++i) {
+          ++v[i][vote[i] - 'A'];
+        }
+      }
+      sort(votes[0].begin(), votes[0].end(), [&](char& a, char& b) {
+        for (int i = 0; i < m; ++i) {
+          if (v[i][a - 'A'] == v[i][b - 'A'])
+            continue;
+          else
+            return v[i][a - 'A'] > v[i][b - 'A'];
+        }
+        return a < b;
+      });
+      return votes[0];
     }
 };
 
