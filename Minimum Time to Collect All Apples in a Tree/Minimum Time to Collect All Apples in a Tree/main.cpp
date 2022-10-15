@@ -38,14 +38,12 @@ public:
     }
     
     int minTime(int n, vector<vector<int>>& edges, vector<bool>& hasApple) {
-        
         vector<int> adjList[n];
         for (auto& edge : edges)
         {
             adjList[edge[0]].push_back(edge[1]);
             adjList[edge[1]].push_back(edge[0]);
         }
-        
         dfs(0, adjList, hasApple, n, -1);
         return res;
     }
